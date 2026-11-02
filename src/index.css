@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Outfit', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); background: #04091a; }
+::selection { background: rgba(139, 92, 246, 0.45); }
+button { -webkit-tap-highlight-color: transparent; }
+
+/* ------------------------------- scrollbars ------------------------------- */
+.panel-scroll::-webkit-scrollbar, .docs-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+.panel-scroll::-webkit-scrollbar-track, .docs-scroll::-webkit-scrollbar-track { background: transparent; }
+.panel-scroll::-webkit-scrollbar-thumb, .docs-scroll::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.22); border-radius: 999px; }
+.panel-scroll::-webkit-scrollbar-thumb:hover, .docs-scroll::-webkit-scrollbar-thumb:hover { background: rgba(167, 139, 250, 0.45); }
+
+.carousel-row { scrollbar-width: none; scroll-snap-type: x proximity; }
+.carousel-row::-webkit-scrollbar { display: none; }
+
+div[class*="overflow-x-auto"]::-webkit-scrollbar { height: 6px; }
+div[class*="overflow-x-auto"]::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
+div[class*="overflow-x-auto"]::-webkit-scrollbar-thumb { background: rgba(129, 140, 248, 0.32); border-radius: 999px; }
+
+/* -------------------------------- animations ------------------------------ */
+@keyframes wave-bar { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+.wave-bar { animation: wave-bar 0.9s ease-in-out infinite; transform-origin: center; }
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fade-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes avatar-float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-7px) scale(1.005); } }
+.avatar-float { animation: avatar-float 6.5s ease-in-out infinite; }
+
+@keyframes avatar-listen { 0%, 100% { transform: translateY(0) rotate(-0.3deg); } 50% { transform: translateY(-4px) rotate(0.3deg); } }
+.avatar-listen { animation: avatar-listen 2.6s ease-in-out infinite; }
+
+@keyframes avatar-speak { 0%, 100% { transform: translateY(0) scale(1); } 25% { transform: translateY(-2px) scale(1.004); } 55% { transform: translateY(1px) scale(0.999); } 80% { transform: translateY(-1px) scale(1.002); } }
+.avatar-speak { animation: avatar-speak 1.15s ease-in-out infinite; }
+
+@keyframes ring-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.ring-spin-slow { animation: ring-spin 46s linear infinite; }
+
+@keyframes mic-pulse { 0% { box-shadow: 0 0 0 0 rgba(217, 70, 239, 0.45), 0 0 45px -8px rgba(139, 92, 246, 0.9); } 70% { box-shadow: 0 0 0 20px rgba(217, 70, 239, 0), 0 0 45px -8px rgba(139, 92, 246, 0.9); } 100% { box-shadow: 0 0 0 0 rgba(217, 70, 239, 0), 0 0 45px -8px rgba(139, 92, 246, 0.9); } }
+.mic-listening { animation: mic-pulse 1.8s ease-out infinite; }
+
+@keyframes panel-in { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
+.panel-in { animation: panel-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes panel-in-left { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
+.panel-in-left { animation: panel-in-left 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes modal-in { from { opacity: 0; transform: translateY(12px) scale(0.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.modal-in { animation: modal-in 0.24s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes toast-in { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.toast-in { animation: toast-in 0.25s ease-out both; }
+
+/* ------------------------------- form controls ---------------------------- */
+.aida-range { -webkit-appearance: none; appearance: none; height: 4px; border-radius: 999px; background: linear-gradient(90deg, #8b5cf6, #6366f1); outline: none; }
+.aida-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; height: 14px; width: 14px; border-radius: 50%; background: #ede9fe; border: 2px solid #8b5cf6; box-shadow: 0 0 10px rgba(139, 92, 246, 0.8); cursor: pointer; }
+.aida-range::-moz-range-thumb { height: 14px; width: 14px; border-radius: 50%; background: #ede9fe; border: 2px solid #8b5cf6; cursor: pointer; }
+
+/* ------------------------------ documentation ----------------------------- */
+.doc-blocks table { table-layout: auto; }
+.doc-blocks h2, .doc-blocks h3 { text-wrap: balance; }
+.doc-docs .doc-blocks p, .doc-docs .doc-blocks li, .doc-docs .doc-blocks td { font-size: 12.5px; }
+
+/* ---------------------------------- print --------------------------------- */
+@media print {
+  @page { size: A4; margin: 14mm 12mm; }
+  html, body { background: #ffffff !important; color: #16203a !important; }
+  .app-shell { display: none !important; }
+  .docs-overlay { position: static !important; inset: auto !important; height: auto !important; display: block !important; background: #fff !important; color: #16203a !important; }
+  .docs-toc, .docs-overlay header, .docs-overlay > div > div:first-child { display: none !important; }
+  .docs-scroll { overflow: visible !important; height: auto !important; }
+  .docs-overlay [class*="max-w-"] { max-width: 100% !important; padding: 0 !important; }
+  .print-reveal { display: block !important; }
+  .docs-overlay * { color: #17223b !important; background: transparent !important; border-color: #cbd5e1 !important; box-shadow: none !important; text-shadow: none !important; }
+  .docs-overlay h1, .docs-overlay h2, .docs-overlay h3 { color: #0b1633 !important; }
+  .docs-overlay tr, .docs-overlay figure, .docs-overlay li { break-inside: avoid; }
+  .docs-overlay section { break-before: page; }
+  .docs-overlay section:first-of-type { break-before: auto; }
+  .docs-overlay pre { white-space: pre-wrap; }
+}
